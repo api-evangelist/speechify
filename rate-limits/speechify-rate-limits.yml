@@ -1,0 +1,62 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Speechify
+providerId: speechify
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Text to Speech
+- Voice
+- Speech Synthesis
+- Voice Cloning
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Speechify Voice API enforces per-account limits on synthesis requests
+  and is metered primarily on billable characters. Specific requests-per-minute
+  and concurrency limits vary by plan (Starter, Pay-As-You-Go, Enterprise) and
+  are not published as fixed numbers; the Starter tier additionally caps total
+  characters and audio minutes per period. Per-account values are not
+  reconciled in this artifact.
+notes: >-
+  Verify concurrency, requests-per-minute, and per-period character/minute
+  caps against the Speechify dashboard and API documentation on reconciliation;
+  limits raise with paid and Enterprise plans.
+sources:
+- https://docs.sws.speechify.com
+- https://speechify.com/pricing-api/
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account synthesis request rate; varies by plan.
+- name: Concurrent Streams
+  scope: account
+  metric: concurrent_requests
+  limit: see provider documentation
+  notes: Concurrent /v1/audio/stream sessions allowed; varies by plan.
+- name: Characters Per Period
+  scope: account
+  metric: characters
+  limit: 50000 on Starter; unlimited on Pay-As-You-Go
+  notes: Starter free tier caps total billable characters per month.
+- name: Audio Minutes Per Period
+  scope: account
+  metric: minutes
+  limit: 100 on Starter; higher on paid plans
+  notes: Starter free tier caps total synthesized audio minutes per month.
+policies:
+- name: Tiered Limits
+  description: Limits raise as accounts move from Starter to Pay-As-You-Go and Enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

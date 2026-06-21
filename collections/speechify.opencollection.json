@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speechify Voice API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert text to speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sws.speechify.com/v1/audio/speech",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"input\": \"Hello from Speechify!\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"audio_format\": \"mp3\"\n}"
+            }
+          },
+          "docs": "Synthesizes speech and returns JSON with base64 audio_data, audio_format, billable_characters_count, and speech_marks."
+        },
+        {
+          "info": {
+            "name": "Stream text to speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sws.speechify.com/v1/audio/stream",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"input\": \"Hello from Speechify!\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\"\n}"
+            }
+          },
+          "docs": "Streams synthesized audio as a chunked HTTP response. WAV is not available for streaming."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sws.speechify.com/v1/voices"
+          },
+          "docs": "Returns available pre-set and personal voices."
+        },
+        {
+          "info": {
+            "name": "Create a voice clone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sws.speechify.com/v1/voices",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates an instant personal voice clone from a 10-30 second audio sample with explicit consent (fullName and email)."
+        },
+        {
+          "info": {
+            "name": "Delete a voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sws.speechify.com/v1/voices/{id}"
+          },
+          "docs": "Deletes a personal (cloned) voice by id."
+        }
+      ]
+    }
+  ]
+}

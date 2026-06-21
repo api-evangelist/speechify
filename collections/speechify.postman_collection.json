@@ -1,0 +1,323 @@
+{
+  "item": [
+    {
+      "id": "a1c2e3f4-1111-4a2b-9c3d-001000000001",
+      "name": "Audio",
+      "description": {
+        "content": "Text-to-speech synthesis endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1c2e3f4-1111-4a2b-9c3d-001000000002",
+          "name": "Convert text to speech",
+          "request": {
+            "name": "Convert text to speech",
+            "description": {
+              "content": "Synthesizes speech from plain text or SSML and returns JSON with base64 audio_data, audio_format, billable_characters_count, and speech_marks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "audio",
+                "speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"Hello from Speechify!\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"audio_format\": \"mp3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1c2e3f4-1111-4a2b-9c3d-001000000003",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Hello from Speechify!\",\n  \"voice_id\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audio_data\": \"<base64-encoded audio>\",\n  \"audio_format\": \"mp3\",\n  \"billable_characters_count\": 21,\n  \"speech_marks\": {\n    \"type\": \"sentence\",\n    \"start\": 0,\n    \"end\": 21,\n    \"start_time\": 0,\n    \"end_time\": 1320,\n    \"value\": \"Hello from Speechify!\",\n    \"chunks\": []\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1c2e3f4-1111-4a2b-9c3d-001000000004",
+          "name": "Stream text to speech",
+          "request": {
+            "name": "Stream text to speech",
+            "description": {
+              "content": "Streams synthesized audio as a chunked HTTP response. WAV is not available for streaming.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "audio",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"Hello from Speechify!\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1c2e3f4-1111-4a2b-9c3d-002000000001",
+      "name": "Voices",
+      "description": {
+        "content": "Voice catalog and voice cloning endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1c2e3f4-1111-4a2b-9c3d-002000000002",
+          "name": "List voices",
+          "request": {
+            "name": "List voices",
+            "description": {
+              "content": "Returns available pre-set and personal voices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "voices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1c2e3f4-1111-4a2b-9c3d-002000000003",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ]
+                },
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"type\": \"shared\",\n    \"gender\": \"female\",\n    \"locale\": \"en-US\",\n    \"tags\": [],\n    \"models\": [\"simba-english\", \"simba-multilingual\"]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1c2e3f4-1111-4a2b-9c3d-002000000004",
+          "name": "Create a voice clone",
+          "request": {
+            "name": "Create a voice clone",
+            "description": {
+              "content": "Creates an instant personal voice clone from a 10-30 second audio sample with explicit consent. Submitted as multipart/form-data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "voices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "My Voice",
+                  "type": "text"
+                },
+                {
+                  "key": "sample",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "consent",
+                  "value": "{\"fullName\":\"Jane Doe\",\"email\":\"jane@example.com\"}",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1c2e3f4-1111-4a2b-9c3d-002000000005",
+          "name": "Delete a voice",
+          "request": {
+            "name": "Delete a voice",
+            "description": {
+              "content": "Deletes a personal (cloned) voice by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "voices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sws.speechify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1c2e3f4-1111-4a2b-9c3d-000000000000",
+    "name": "Speechify Voice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the Speechify Voice API (Text-to-Speech).\n\nContact Support:\n Name: Speechify Support\n URL: https://docs.sws.speechify.com",
+      "type": "text/plain"
+    }
+  }
+}

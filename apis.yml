@@ -1,0 +1,122 @@
+aid: speechify
+url: https://raw.githubusercontent.com/api-evangelist/speechify/refs/heads/main/apis.yml
+name: Speechify
+kind: company
+description: Speechify is a text-to-speech platform whose Speechify Voice API (also
+  surfaced through Speechify Studio) synthesizes lifelike speech in 30+ languages
+  from plain text or SSML. The REST API at https://api.sws.speechify.com offers
+  non-streaming and streaming text-to-speech, a voice catalog, and instant voice
+  cloning, authenticated with a Bearer API key.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- Text to Speech
+- Voice
+- Speech Synthesis
+- Voice Cloning
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: speechify:text-to-speech
+  name: Speechify Text-to-Speech API
+  tags:
+  - Text to Speech
+  - Speech Synthesis
+  - SSML
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech
+  baseURL: https://api.sws.speechify.com/v1
+  properties:
+  - url: https://docs.sws.speechify.com/tts/overview/welcome
+    type: Documentation
+  - url: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech
+    type: APIReference
+  - url: openapi/speechify-openapi.yml
+    type: OpenAPI
+  - url: collections/speechify.postman_collection.json
+    type: Postman
+  description: Synthesizes lifelike speech from plain text or SSML via POST
+    /v1/audio/speech, returning base64-encoded audio (wav, mp3, ogg, aac, or pcm)
+    plus speech marks for word-level timing, using the simba-english or
+    simba-multilingual models across 30+ languages.
+- aid: speechify:streaming-tts
+  name: Speechify Streaming TTS API
+  tags:
+  - Streaming
+  - Text to Speech
+  - Low Latency
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/stream
+  baseURL: https://api.sws.speechify.com/v1
+  properties:
+  - url: https://docs.sws.speechify.com/docs/features/streaming
+    type: Documentation
+  - url: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/stream
+    type: APIReference
+  - url: openapi/speechify-openapi.yml
+    type: OpenAPI
+  - url: collections/speechify.postman_collection.json
+    type: Postman
+  description: Streams synthesized audio as a chunked HTTP response from POST
+    /v1/audio/stream for sub-300ms time-to-first-byte playback, with Accept values
+    of audio/mpeg, audio/ogg, audio/aac, or audio/pcm (WAV is not available for
+    streaming).
+- aid: speechify:voices
+  name: Speechify Voices API
+  tags:
+  - Voices
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices
+  baseURL: https://api.sws.speechify.com/v1
+  properties:
+  - url: https://docs.sws.speechify.com/tts/overview/welcome
+    type: Documentation
+  - url: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices/delete
+    type: APIReference
+  - url: openapi/speechify-openapi.yml
+    type: OpenAPI
+  - url: collections/speechify.postman_collection.json
+    type: Postman
+  description: Lists the available voices via GET /v1/voices, including 1,000+
+    pre-set Speechify voices and any personal cloned voices, each with id, gender,
+    locale, and tags for selection by voice_id.
+- aid: speechify:voice-cloning
+  name: Speechify Voice Cloning API
+  tags:
+  - Voice Cloning
+  - Custom Voices
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sws.speechify.com/tts/guides/voice-cloning
+  baseURL: https://api.sws.speechify.com/v1
+  properties:
+  - url: https://docs.sws.speechify.com/v1/docs/features/voice-cloning
+    type: Documentation
+  - url: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices/delete
+    type: APIReference
+  - url: openapi/speechify-openapi.yml
+    type: OpenAPI
+  - url: collections/speechify.postman_collection.json
+    type: Postman
+  description: Creates an instant personal voice clone from a 10-30 second audio
+    sample via multipart POST /v1/voices with explicit consent (full name and
+    email), and removes cloned voices via DELETE /v1/voices/{id}.
+common:
+- type: GitHubOrganization
+  url: https://github.com/SpeechifyInc
+- type: LinkedIn
+  url: https://www.linkedin.com/company/speechify
+- type: Website
+  url: https://speechify.com
+- type: Documentation
+  url: https://docs.sws.speechify.com
+- type: Plans
+  url: plans/speechify-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/speechify-rate-limits.yml
+- type: FinOps
+  url: finops/speechify-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

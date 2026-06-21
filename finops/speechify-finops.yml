@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Speechify
+providerId: speechify
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Text to Speech
+- Voice
+- Speech Synthesis
+- Voice Cloning
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Speechify Voice API spend. Speechify bills text-to-speech
+  usage on a per-character basis (billable characters returned per synthesis
+  request), with a free Starter allowance, a Pay-As-You-Go per-million-character
+  rate covering both /v1/audio/speech and /v1/audio/stream, and custom
+  Enterprise agreements. Voice cloning is included on paid plans. Exact rates
+  vary and are not reconciled here.
+notes: >-
+  Per-character rates and allowances are subject to change; verify against the
+  Speechify API pricing page during reconciliation. Some API tier details
+  require contacting Speechify sales.
+sources:
+- https://speechify.com/pricing-api/
+- https://docs.sws.speechify.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Speechify
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Speechify Voice API
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Speechify
+  PublisherName: Speechify
+  InvoiceIssuerName: Speechify
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: billable_characters
+  description: >-
+    Characters synthesized to speech via /v1/audio/speech and /v1/audio/stream,
+    returned as billable_characters_count and billed per 1M characters.
+  unit: characters
+  aggregation: sum
+  dimensions:
+  - account
+  - voice
+  - model
+- name: streamed_characters
+  description: >-
+    Characters synthesized through the streaming endpoint; billed under the
+    same per-character rate as non-streaming synthesis.
+  unit: characters
+  aggregation: sum
+  dimensions:
+  - account
+  - voice
+- name: voice_clones
+  description: Personal voice clones created via POST /v1/voices on paid plans.
+  unit: voices
+  aggregation: count
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track billable_characters_count returned per request and reconcile against monthly invoices per API key.
+- name: Allocation
+  description: Tag API keys per workload/team and map character burn to internal cost centers.
+- name: Optimization
+  description: Trim and normalize input text, reuse synthesized audio where possible, and pick the smallest sufficient model (simba-english vs simba-multilingual).
+- name: Accountability
+  description: Assign owners per project/key and review per-character spend monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

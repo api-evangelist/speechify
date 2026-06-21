@@ -1,0 +1,78 @@
+aid: speechify
+name: Speechify
+review:
+  question: Does Speechify expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling. Speechify's streaming text-to-speech (POST
+    /v1/audio/stream) is delivered as a chunked HTTP audio response (raw audio
+    bytes with Transfer-Encoding: chunked), not as an SSE event stream and not
+    over WebSocket. Because the streamed payload is a binary audio body rather
+    than a sequence of discrete data-only SSE events, no AsyncAPI document was
+    authored. If Speechify later documents an SSE or WebSocket realtime
+    surface, an AsyncAPI 2.6 document should be created at
+    asyncapi/speechify-asyncapi.yml.
+findings:
+  summary: |
+    Speechify does not publish a documented public WebSocket API. The
+    Speechify Voice (Text-to-Speech) API exposes only REST (HTTPS) endpoints
+    under https://api.sws.speechify.com, authenticated with a Bearer API key.
+    Low-latency synthesis is offered through POST /v1/audio/stream, which
+    returns the synthesized audio as a chunked HTTP response (Accept of
+    audio/mpeg, audio/ogg, audio/aac, or audio/pcm; WAV is not available for
+    streaming). This is one-way chunked HTTP audio streaming - it is neither
+    Server-Sent Events nor WebSocket. No realtime, bidirectional, or
+    ws://wss:// endpoint is documented for text-to-speech, voices, or voice
+    cloning.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.sws.speechify.com
+      documented: true
+    - protocol: Chunked HTTP Streaming
+      scheme: https
+      note: >-
+        POST /v1/audio/stream returns raw synthesized audio bytes with
+        Transfer-Encoding: chunked. One-way binary audio body, not SSE events
+        and not WebSocket.
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events (text/event-stream) surface is documented; the streaming endpoint returns a binary audio body, not discrete data events.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Speechify API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.sws.speechify.com/v1/audio/speech
+    - POST   https://api.sws.speechify.com/v1/audio/stream
+    - GET    https://api.sws.speechify.com/v1/voices
+    - POST   https://api.sws.speechify.com/v1/voices
+    - DELETE https://api.sws.speechify.com/v1/voices/{id}
+sources:
+  - url: https://docs.sws.speechify.com
+    type: Documentation
+    note: Overview lists REST base URL https://api.sws.speechify.com with Bearer auth; no WebSocket mentioned.
+  - url: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech
+    type: APIReference
+    note: POST /v1/audio/speech returns JSON with base64 audio_data, billable_characters_count, and speech_marks.
+  - url: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/stream
+    type: APIReference
+    note: POST /v1/audio/stream returns chunked HTTP audio; Accept audio/mpeg, audio/ogg, audio/aac, audio/pcm; no WAV streaming.
+  - url: https://docs.sws.speechify.com/v1/docs/features/voice-cloning
+    type: Documentation
+    note: Instant voice cloning via multipart POST /v1/voices with consent; DELETE /v1/voices/{id} removes personal voices.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. The only streaming surface is
+    chunked HTTP binary audio from POST /v1/audio/stream, which is out of scope
+    for AsyncAPI event modeling, so no AsyncAPI document was authored. The REST
+    surface is fully captured in openapi/speechify-openapi.yml and referenced
+    from apis.yml.

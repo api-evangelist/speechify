@@ -1,0 +1,114 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Speechify
+providerId: speechify
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Text to Speech
+- Voice
+- Speech Synthesis
+- Voice Cloning
+- Plans
+description: >-
+  The Speechify Voice (Text-to-Speech) API uses per-character pricing. A free
+  Starter tier grants a fixed character/minute allowance with pre-set voices,
+  SSML, and speech marks but no voice cloning. A Pay-As-You-Go tier bills
+  per million characters with unlimited conversion and voice cloning, and an
+  Enterprise tier adds custom DPA/SLA terms, bespoke cloning/dubbing, and an
+  annual commitment. Exact per-character rates and allowances vary and should
+  be confirmed on the API pricing page; values here are not reconciled.
+notes: >-
+  Per-character rates and tier allowances are taken from the public Speechify
+  API pricing page and may change; some developer/API tier details require
+  contacting Speechify sales. Confirm on reconciliation.
+sources:
+- https://speechify.com/pricing-api/
+- https://docs.sws.speechify.com
+plans:
+- id: speechify-starter
+  name: Starter (Free)
+  type: free
+  description: >-
+    Free tier with a fixed character and minute allowance, pre-set voices,
+    SSML, speech marks, and SDKs. No voice cloning.
+  entries:
+  - label: Included Characters
+    name: starter_characters
+    type: free
+    metric: characters
+    limit: 50000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.00
+    userMultiplied: false
+  - label: Included Audio Minutes
+    name: starter_minutes
+    type: free
+    metric: minutes
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.00
+    userMultiplied: false
+  elements:
+  - name: Text-to-Speech
+  - name: Streaming TTS
+  - name: Voices
+  - name: SSML
+  - name: Speech Marks
+- id: speechify-pay-as-you-go
+  name: Pay-As-You-Go
+  type: usage
+  description: >-
+    Per-character usage tier with unlimited conversion, voice cloning, and no
+    overage fees.
+  entries:
+  - label: Synthesized Characters
+    name: characters
+    type: usage
+    metric: characters
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: from $6-$10 per 1M characters (confirm current rate)
+    userMultiplied: false
+  elements:
+  - name: Text-to-Speech
+  - name: Streaming TTS
+  - name: Voices
+  - name: Voice Cloning
+  - name: SSML
+  - name: Speech Marks
+- id: speechify-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom pricing with security questionnaires, custom DPA/SLA terms, bespoke
+    voice cloning and dubbing, multiple seats, and priority support. Annual
+    commitment applies. Contact Speechify sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: custom (annual commitment; contact sales)
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Bespoke Voice Cloning and Dubbing
+  - name: Custom DPA / SLA
+  - name: Priority Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
