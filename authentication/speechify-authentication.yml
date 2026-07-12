@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/speechify-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Pass your Speechify API key as a Bearer token in the Authorization header, e.g.
+    "Authorization: Bearer $SPEECHIFY_API_KEY".'
+  sources:
+  - openapi/speechify-openapi.yml

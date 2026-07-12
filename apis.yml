@@ -103,6 +103,10 @@ apis:
     sample via multipart POST /v1/voices with explicit consent (full name and
     email), and removes cloned voices via DELETE /v1/voices/{id}.
 common:
+- type: DomainSecurity
+  url: security/speechify-domain-security.yml
+- type: Authentication
+  url: authentication/speechify-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/SpeechifyInc
 - type: LinkedIn
@@ -117,6 +121,8 @@ common:
   url: rate-limits/speechify-rate-limits.yml
 - type: FinOps
   url: finops/speechify-finops.yml
+- url: https://speechify.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
