@@ -103,6 +103,8 @@ apis:
     sample via multipart POST /v1/voices with explicit consent (full name and
     email), and removes cloned voices via DELETE /v1/voices/{id}.
 common:
+- type: AgenticAccess
+  url: agentic-access/speechify-agentic-access.yml
 - type: DomainSecurity
   url: security/speechify-domain-security.yml
 - type: Authentication
