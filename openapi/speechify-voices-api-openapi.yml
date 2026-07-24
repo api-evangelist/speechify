@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: Speechify Voice Audio Voices API
+  description: Specification of the Speechify Voice API (Text-to-Speech). The API synthesizes lifelike speech from plain text or SSML in 30+ languages, supports non-streaming and streaming audio, lists available voices, and creates and deletes instant voice clones. All requests authenticate with a Bearer API key.
+  termsOfService: https://speechify.com/terms/
+  contact:
+    name: Speechify Support
+    url: https://docs.sws.speechify.com
+  version: '1.0'
+servers:
+- url: https://api.sws.speechify.com
+security:
+- bearerAuth: []
+tags:
+- name: Voices
+paths:
+  /v1/voices:
+    get:
+      operationId: listVoices
+      tags:
+      - Voices
+      summary: List voices
+      description: Returns the available voices, including pre-set Speechify voices and any personal cloned voices on the account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Voice'
+        '401':
+          description: Unauthorized - missing or invalid API key.
+    post:
+      operationId: createVoice
+      tags:
+      - Voices
+      summary: Create a voice clone
+      description: Creates an instant personal voice clone from a 10-30 second audio sample. Requires explicit consent identifying the person who owns the voice. Submitted as multipart/form-data.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateVoiceRequest'
+      responses:
+        '200':
+          description: The created personal voice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice'
+        '401':
+          description: Unauthorized - missing or invalid API key.
+        '422':
+          description: Unprocessable entity - invalid sample or missing consent.
+  /v1/voices/{id}:
+    delete:
+      operationId: deleteVoice
+      tags:
+      - Voices
+      summary: Delete a voice
+      description: Deletes a personal (cloned) voice by its id.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the personal voice to delete.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The voice was deleted.
+        '401':
+          description: Unauthorized - missing or invalid API key.
+        '404':
+          description: The voice was not found.
+components:
+  schemas:
+    CreateVoiceRequest:
+      type: object
+      required:
+      - name
+      - sample
+      - consent
+      properties:
+        name:
+          type: string
+          description: Display name for the cloned voice.
+        sample:
+          type: string
+          format: binary
+          description: A 10-30 second audio sample of the voice to clone.
+        consent:
+          type: string
+          description: JSON string containing the fullName and email of the person who owns the voice, confirming the voice belongs to you or someone you represent.
+          example: '{"fullName":"Jane Doe","email":"jane@example.com"}'
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - notSpecified
+        locale:
+          type: string
+          description: Primary locale of the voice, e.g. en-US.
+    Voice:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The voice id used as voice_id when synthesizing speech.
+        display_name:
+          type: string
+          description: Human-readable name of the voice.
+        type:
+          type: string
+          description: Whether the voice is a pre-set Speechify voice or a personal clone.
+          enum:
+          - shared
+          - personal
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - notSpecified
+        locale:
+          type: string
+          description: Primary locale of the voice, e.g. en-US.
+        tags:
+          type: array
+          items:
+            type: string
+        models:
+          type: array
+          description: Models the voice supports.
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Pass your Speechify API key as a Bearer token in the Authorization header, e.g. "Authorization: Bearer $SPEECHIFY_API_KEY".'
