@@ -1,0 +1,16 @@
+{
+  "provider": "speechify",
+  "sources": [
+    "speechify-audio-api-openapi.yml",
+    "speechify-voices-api-openapi.yml"
+  ],
+  "outputs": [
+    "speechify-audio-api-openapi.yml",
+    "speechify-voices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
