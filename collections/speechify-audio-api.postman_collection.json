@@ -1,0 +1,467 @@
+{
+  "item": [
+    {
+      "id": "3c9821c4-9a00-4c64-b2f9-cf1e7b9c8a6e",
+      "name": "Audio",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57cb6cf9-7015-4b07-b021-64464ce68ddb",
+          "name": "Convert text to speech",
+          "request": {
+            "name": "Convert text to speech",
+            "description": {
+              "content": "Synthesizes speech for the given input and returns a JSON object with base64-encoded audio data, the audio format, the billable character count, and speech marks describing word-level timing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "audio",
+                "speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"<string>\",\n  \"model\": \"simba-english\",\n  \"audio_format\": \"wav\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9aa519f2-2eed-48e2-b84c-74f1b608ef26",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"audio_format\": \"wav\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audio_data\": \"string\",\n  \"audio_format\": \"pcm\",\n  \"billable_characters_count\": 5034,\n  \"speech_marks\": {\n    \"type\": \"sentence\",\n    \"start\": 924,\n    \"end\": 7852,\n    \"start_time\": 158.62089362510213,\n    \"end_time\": 9502.928205757373,\n    \"value\": \"string\",\n    \"chunks\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/SpeechMarks detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/SpeechMarks detected>\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "335a6138-49fe-45ab-a1af-d14b17ce00a5",
+              "name": "Unauthorized - missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"audio_format\": \"wav\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7bb1dac-d724-4dd9-9aed-cd69d3152324",
+              "name": "Unprocessable entity - invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"audio_format\": \"wav\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e28fb07-5408-464d-a492-2cbe5417328d",
+          "name": "Stream text to speech",
+          "request": {
+            "name": "Stream text to speech",
+            "description": {
+              "content": "Synthesizes speech for the given input and returns the raw audio as a chunked HTTP stream for low-latency playback. The response content type is selected with the Accept header. WAV is not available for streaming; use /v1/audio/speech for WAV output.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "audio",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"<string>\",\n  \"model\": \"simba-english\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25b99265-9393-4dad-b72b-3742c8b450e3",
+              "name": "A chunked stream of synthesized audio bytes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio container for the streamed response. Allowed values are audio/mpeg, audio/ogg, audio/aac, or audio/pcm.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "chunked",
+                  "key": "Transfer-Encoding",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "audio/mpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd3497e1-8dda-4ed2-bd4c-d3e7017ed20c",
+              "name": "Unauthorized - missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio container for the streamed response. Allowed values are audio/mpeg, audio/ogg, audio/aac, or audio/pcm.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "81068efa-8caa-4198-88d3-68c8f05ac76d",
+              "name": "Unprocessable entity - invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audio",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio container for the streamed response. Allowed values are audio/mpeg, audio/ogg, audio/aac, or audio/pcm.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"language\": \"en-US\",\n  \"model\": \"simba-english\",\n  \"options\": {\n    \"loudness_normalization\": \"<boolean>\",\n    \"text_normalization\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sws.speechify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "68928fa8-27e8-41db-a083-24ba5547d025",
+    "name": "Speechify Voice Audio API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the Speechify Voice API (Text-to-Speech). The API synthesizes lifelike speech from plain text or SSML in 30+ languages, supports non-streaming and streaming audio, lists available voices, and creates and deletes instant voice clones. All requests authenticate with a Bearer API key.\n\nContact Support:\n Name: Speechify Support",
+      "type": "text/plain"
+    }
+  }
+}

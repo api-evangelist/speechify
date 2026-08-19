@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speechify Voice Audio API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert text to speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sws.speechify.com/v1/audio/speech",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Synthesizes speech for the given input and returns a JSON object with base64-encoded audio data, the audio format, the billable character count, and speech marks describing word-level timing."
+        },
+        {
+          "info": {
+            "name": "Stream text to speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sws.speechify.com/v1/audio/stream",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Synthesizes speech for the given input and returns the raw audio as a chunked HTTP stream for low-latency playback. The response content type is selected with the Accept header. WAV is not available for streaming; use /v1/audio/speech for WAV output."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,692 @@
+{
+  "item": [
+    {
+      "id": "7bb376ab-85d2-46f6-bae4-52da11089f74",
+      "name": "Voices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e0b59f7-01f8-4bcc-ac7e-f3cded7b9481",
+          "name": "List voices",
+          "request": {
+            "name": "List voices",
+            "description": {
+              "content": "Returns the available voices, including pre-set Speechify voices and any personal cloned voices on the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "voices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1e892f6-c98e-4426-a5f4-c782e054efcf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"display_name\": \"string\",\n    \"type\": \"shared\",\n    \"gender\": \"notSpecified\",\n    \"locale\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"models\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"display_name\": \"string\",\n    \"type\": \"personal\",\n    \"gender\": \"female\",\n    \"locale\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"models\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c45fa481-2a2a-40c0-adf3-df9bbf67b18b",
+              "name": "Unauthorized - missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de95bb83-11e6-4a57-8c73-79577fdf0c01",
+          "name": "Create a voice clone",
+          "request": {
+            "name": "Create a voice clone",
+            "description": {
+              "content": "Creates an instant personal voice clone from a 10-30 second audio sample. Requires explicit consent identifying the person who owns the voice. Submitted as multipart/form-data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "voices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Display name for the cloned voice."
+                },
+                {
+                  "key": "sample",
+                  "type": "file",
+                  "description": "(Required) A 10-30 second audio sample of the voice to clone."
+                },
+                {
+                  "key": "consent",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) JSON string containing the fullName and email of the person who owns the voice, confirming the voice belongs to you or someone you represent."
+                },
+                {
+                  "key": "gender",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of male,female,notSpecified)"
+                },
+                {
+                  "key": "locale",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Primary locale of the voice, e.g. en-US."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b888a83a-172f-4fb0-a0d0-26cb6fb396a6",
+              "name": "The created personal voice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Display name for the cloned voice.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) A 10-30 second audio sample of the voice to clone.",
+                        "type": "text/plain"
+                      },
+                      "key": "sample",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON string containing the fullName and email of the person who owns the voice, confirming the voice belongs to you or someone you represent.",
+                        "type": "text/plain"
+                      },
+                      "key": "consent",
+                      "value": "{\"fullName\":\"Jane Doe\",\"email\":\"jane@example.com\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of male,female,notSpecified)",
+                        "type": "text/plain"
+                      },
+                      "key": "gender",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Primary locale of the voice, e.g. en-US.",
+                        "type": "text/plain"
+                      },
+                      "key": "locale",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"display_name\": \"string\",\n  \"type\": \"shared\",\n  \"gender\": \"notSpecified\",\n  \"locale\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"models\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7b2065d-b818-4899-a082-a885f3f68b68",
+              "name": "Unauthorized - missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Display name for the cloned voice.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) A 10-30 second audio sample of the voice to clone.",
+                        "type": "text/plain"
+                      },
+                      "key": "sample",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON string containing the fullName and email of the person who owns the voice, confirming the voice belongs to you or someone you represent.",
+                        "type": "text/plain"
+                      },
+                      "key": "consent",
+                      "value": "{\"fullName\":\"Jane Doe\",\"email\":\"jane@example.com\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of male,female,notSpecified)",
+                        "type": "text/plain"
+                      },
+                      "key": "gender",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Primary locale of the voice, e.g. en-US.",
+                        "type": "text/plain"
+                      },
+                      "key": "locale",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e94ac5c-e2d9-40e5-83a4-eea095c89586",
+              "name": "Unprocessable entity - invalid sample or missing consent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Display name for the cloned voice.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) A 10-30 second audio sample of the voice to clone.",
+                        "type": "text/plain"
+                      },
+                      "key": "sample",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON string containing the fullName and email of the person who owns the voice, confirming the voice belongs to you or someone you represent.",
+                        "type": "text/plain"
+                      },
+                      "key": "consent",
+                      "value": "{\"fullName\":\"Jane Doe\",\"email\":\"jane@example.com\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of male,female,notSpecified)",
+                        "type": "text/plain"
+                      },
+                      "key": "gender",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Primary locale of the voice, e.g. en-US.",
+                        "type": "text/plain"
+                      },
+                      "key": "locale",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae9bf996-df66-48bf-829f-ee12c4be024c",
+          "name": "Delete a voice",
+          "request": {
+            "name": "Delete a voice",
+            "description": {
+              "content": "Deletes a personal (cloned) voice by its id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "voices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the personal voice to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58e1ed07-faef-4f73-bb1a-3fef3750fde3",
+              "name": "The voice was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the personal voice to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60d0fe28-4144-4696-a948-3ac9c29b3920",
+              "name": "Unauthorized - missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the personal voice to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "efe85904-d723-4bd2-8a03-983b91f766c2",
+              "name": "The voice was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "voices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the personal voice to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sws.speechify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df6dcab2-7252-439c-a97b-79fdefc84a08",
+    "name": "Speechify Voice Audio Voices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the Speechify Voice API (Text-to-Speech). The API synthesizes lifelike speech from plain text or SSML in 30+ languages, supports non-streaming and streaming audio, lists available voices, and creates and deletes instant voice clones. All requests authenticate with a Bearer API key.\n\nContact Support:\n Name: Speechify Support",
+      "type": "text/plain"
+    }
+  }
+}

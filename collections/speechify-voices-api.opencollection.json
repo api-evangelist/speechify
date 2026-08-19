@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Speechify Voice Audio Voices API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sws.speechify.com/v1/voices"
+          },
+          "docs": "Returns the available voices, including pre-set Speechify voices and any personal cloned voices on the account."
+        },
+        {
+          "info": {
+            "name": "Create a voice clone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sws.speechify.com/v1/voices",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates an instant personal voice clone from a 10-30 second audio sample. Requires explicit consent identifying the person who owns the voice. Submitted as multipart/form-data."
+        },
+        {
+          "info": {
+            "name": "Delete a voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sws.speechify.com/v1/voices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the personal voice to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a personal (cloned) voice by its id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
