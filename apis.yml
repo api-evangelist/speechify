@@ -7,6 +7,18 @@ description: Speechify is a text-to-speech platform whose Speechify Voice API (a
   from plain text or SSML. The REST API at https://api.sws.speechify.com offers
   non-streaming and streaming text-to-speech, a voice catalog, and instant voice
   cloning, authenticated with a Bearer API key.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
