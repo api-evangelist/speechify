@@ -80,6 +80,8 @@ apis:
   humanURL: https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech
   baseURL: https://api.sws.speechify.com/v1
   tags:
+  - Voice
+  tags_raw:
   - Voices
   properties:
   - type: OpenAPI
