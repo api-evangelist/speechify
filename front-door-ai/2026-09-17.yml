@@ -1,0 +1,32 @@
+# Front Door AI Index — speechify — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: speechify
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: speechify.com
+  final_host: speechify.com
+  ownership: own
+  owner: speechify
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 63
+  host_score: 63
+  density: 21.61
+  words: 2915
+  tiers:
+    agentic: 13
+    core: 44
+    model: 6
+  ambiguous: 2
+  top_terms:
+    AI: 43
+    AI assistant: 13
+    ChatGPT: 3
+    Gemini: 2
+    Claude: 1
+    agent: 1
+    artificial intelligence: 1
+    intelligence: 1

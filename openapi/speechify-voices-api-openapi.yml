@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Speechify Voice Audio Voices API
+  title: Speechify Voice Voices API
   description: Specification of the Speechify Voice API (Text-to-Speech). The API synthesizes lifelike speech from plain text or SSML in 30+ languages, supports non-streaming and streaming audio, lists available voices, and creates and deletes instant voice clones. All requests authenticate with a Bearer API key.
   termsOfService: https://speechify.com/terms/
   contact:

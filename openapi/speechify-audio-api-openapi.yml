@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Speechify Voice Audio API
   description: Specification of the Speechify Voice API (Text-to-Speech). The API synthesizes lifelike speech from plain text or SSML in 30+ languages, supports non-streaming and streaming audio, lists available voices, and creates and deletes instant voice clones. All requests authenticate with a Bearer API key.
@@ -95,6 +95,27 @@ paths:
           description: Unprocessable entity - invalid request parameters.
 components:
   schemas:
+    GetSpeechResponse:
+      type: object
+      properties:
+        audio_data:
+          type: string
+          format: byte
+          description: Base64-encoded synthesized audio.
+        audio_format:
+          type: string
+          description: The format of the returned audio.
+          enum:
+          - wav
+          - mp3
+          - ogg
+          - aac
+          - pcm
+        billable_characters_count:
+          type: integer
+          description: The number of billable characters processed in the request.
+        speech_marks:
+          $ref: '#/components/schemas/SpeechMarks'
     GetStreamRequest:
       type: object
       required:
@@ -119,37 +140,6 @@ components:
           default: simba-english
         options:
           $ref: '#/components/schemas/SpeechOptions'
-    GetSpeechResponse:
-      type: object
-      properties:
-        audio_data:
-          type: string
-          format: byte
-          description: Base64-encoded synthesized audio.
-        audio_format:
-          type: string
-          description: The format of the returned audio.
-          enum:
-          - wav
-          - mp3
-          - ogg
-          - aac
-          - pcm
-        billable_characters_count:
-          type: integer
-          description: The number of billable characters processed in the request.
-        speech_marks:
-          $ref: '#/components/schemas/SpeechMarks'
-    SpeechOptions:
-      type: object
-      description: Optional synthesis controls.
-      properties:
-        loudness_normalization:
-          type: boolean
-          description: Whether to normalize the loudness of the output audio.
-        text_normalization:
-          type: boolean
-          description: Whether to apply text normalization (e.g. expanding numbers and abbreviations) before synthesis.
     SpeechMarks:
       type: object
       description: A nested chunk structure mapping spans of text to start and end times in the synthesized audio, informing the client when each word is spoken.
@@ -177,6 +167,16 @@ components:
           description: Nested speech marks, e.g. words within a sentence.
           items:
             $ref: '#/components/schemas/SpeechMarks'
+    SpeechOptions:
+      type: object
+      description: Optional synthesis controls.
+      properties:
+        loudness_normalization:
+          type: boolean
+          description: Whether to normalize the loudness of the output audio.
+        text_normalization:
+          type: boolean
+          description: Whether to apply text normalization (e.g. expanding numbers and abbreviations) before synthesis.
     GetSpeechRequest:
       type: object
       required:
