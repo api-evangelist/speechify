@@ -95,88 +95,6 @@ paths:
           description: Unprocessable entity - invalid request parameters.
 components:
   schemas:
-    GetSpeechResponse:
-      type: object
-      properties:
-        audio_data:
-          type: string
-          format: byte
-          description: Base64-encoded synthesized audio.
-        audio_format:
-          type: string
-          description: The format of the returned audio.
-          enum:
-          - wav
-          - mp3
-          - ogg
-          - aac
-          - pcm
-        billable_characters_count:
-          type: integer
-          description: The number of billable characters processed in the request.
-        speech_marks:
-          $ref: '#/components/schemas/SpeechMarks'
-    GetStreamRequest:
-      type: object
-      required:
-      - input
-      - voice_id
-      properties:
-        input:
-          type: string
-          description: Plain text or SSML to be synthesized to speech.
-        voice_id:
-          type: string
-          description: Id of the voice to be used for synthesizing speech.
-        language:
-          type: string
-          description: ISO 639-1 language code and ISO 3166-1 region code separated by a hyphen, e.g. en-US.
-          example: en-US
-        model:
-          type: string
-          enum:
-          - simba-english
-          - simba-multilingual
-          default: simba-english
-        options:
-          $ref: '#/components/schemas/SpeechOptions'
-    SpeechMarks:
-      type: object
-      description: A nested chunk structure mapping spans of text to start and end times in the synthesized audio, informing the client when each word is spoken.
-      properties:
-        type:
-          type: string
-          example: sentence
-        start:
-          type: integer
-          description: Character offset of the start of the chunk in the input.
-        end:
-          type: integer
-          description: Character offset of the end of the chunk in the input.
-        start_time:
-          type: number
-          description: Start time of the chunk in the audio, in milliseconds.
-        end_time:
-          type: number
-          description: End time of the chunk in the audio, in milliseconds.
-        value:
-          type: string
-          description: The text value of the chunk.
-        chunks:
-          type: array
-          description: Nested speech marks, e.g. words within a sentence.
-          items:
-            $ref: '#/components/schemas/SpeechMarks'
-    SpeechOptions:
-      type: object
-      description: Optional synthesis controls.
-      properties:
-        loudness_normalization:
-          type: boolean
-          description: Whether to normalize the loudness of the output audio.
-        text_normalization:
-          type: boolean
-          description: Whether to apply text normalization (e.g. expanding numbers and abbreviations) before synthesis.
     GetSpeechRequest:
       type: object
       required:
@@ -212,6 +130,88 @@ components:
           default: wav
         options:
           $ref: '#/components/schemas/SpeechOptions'
+    GetStreamRequest:
+      type: object
+      required:
+      - input
+      - voice_id
+      properties:
+        input:
+          type: string
+          description: Plain text or SSML to be synthesized to speech.
+        voice_id:
+          type: string
+          description: Id of the voice to be used for synthesizing speech.
+        language:
+          type: string
+          description: ISO 639-1 language code and ISO 3166-1 region code separated by a hyphen, e.g. en-US.
+          example: en-US
+        model:
+          type: string
+          enum:
+          - simba-english
+          - simba-multilingual
+          default: simba-english
+        options:
+          $ref: '#/components/schemas/SpeechOptions'
+    GetSpeechResponse:
+      type: object
+      properties:
+        audio_data:
+          type: string
+          format: byte
+          description: Base64-encoded synthesized audio.
+        audio_format:
+          type: string
+          description: The format of the returned audio.
+          enum:
+          - wav
+          - mp3
+          - ogg
+          - aac
+          - pcm
+        billable_characters_count:
+          type: integer
+          description: The number of billable characters processed in the request.
+        speech_marks:
+          $ref: '#/components/schemas/SpeechMarks'
+    SpeechOptions:
+      type: object
+      description: Optional synthesis controls.
+      properties:
+        loudness_normalization:
+          type: boolean
+          description: Whether to normalize the loudness of the output audio.
+        text_normalization:
+          type: boolean
+          description: Whether to apply text normalization (e.g. expanding numbers and abbreviations) before synthesis.
+    SpeechMarks:
+      type: object
+      description: A nested chunk structure mapping spans of text to start and end times in the synthesized audio, informing the client when each word is spoken.
+      properties:
+        type:
+          type: string
+          example: sentence
+        start:
+          type: integer
+          description: Character offset of the start of the chunk in the input.
+        end:
+          type: integer
+          description: Character offset of the end of the chunk in the input.
+        start_time:
+          type: number
+          description: Start time of the chunk in the audio, in milliseconds.
+        end_time:
+          type: number
+          description: End time of the chunk in the audio, in milliseconds.
+        value:
+          type: string
+          description: The text value of the chunk.
+        chunks:
+          type: array
+          description: Nested speech marks, e.g. words within a sentence.
+          items:
+            $ref: '#/components/schemas/SpeechMarks'
   securitySchemes:
     bearerAuth:
       type: http
