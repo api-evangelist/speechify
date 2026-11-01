@@ -1,4 +1,4 @@
-# Speechify (speechify)
+# Speechify
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,116 +66,118 @@
 
 Speechify is a text-to-speech platform whose Speechify Voice API (also surfaced through Speechify Studio) synthesizes lifelike speech in 30+ languages from plain text or SSML. The REST API at https://api.sws.speechify.com offers non-streaming and streaming text-to-speech, a voice catalog, and instant voice cloning, authenticated with a Bearer API key.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/speechify/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/speechify/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Text-to-Speech · Voice · Speech Synthesis · Voice Cloning
 
-## Tags
+## Speechify on APIs.io
 
-- AI
-- Text to Speech
-- Voice
-- Speech Synthesis
-- Voice Cloning
+Everything profiled for Speechify is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/speechify/](https://apis.io/providers/speechify/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (2)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Speechify Audio API](https://apis.io/apis/speechify/speechify-audio-api/) — The Audio API from Speechify — 2 operation(s) for audio.
+- [Speechify Voices API](https://apis.io/apis/speechify/speechify-voices-api/) — The Voices API from Speechify — 2 operation(s) for voices.
 
-## APIs
+### Published properties
 
-### Speechify Text-to-Speech API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Synthesizes lifelike speech from plain text or SSML via POST /v1/audio/speech, returning base64-encoded audio (wav, mp3, ogg, aac, or pcm) plus speech marks for word-level timing, using the simba-english or simba-multilingual models across 30+ languages.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech)
-- **Base URL:** `https://api.sws.speechify.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Speechify Agentic Access](https://apis.io/agentic-access/speechify/speechify-agentic-access/)
 
-- Text to Speech
-- Speech Synthesis
-- SSML
+#### Collections (3)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.sws.speechify.com/tts/overview/welcome)
-- [API Reference](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/speech)
-- [OpenAPI](openapi/speechify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/speechify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/speechify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Speechify Voice API](https://apis.io/collections/speechify/open-speechify/)
+- [Speechify Voice Audio API](https://apis.io/collections/speechify/open-speechify-audio-api/)
+- [Speechify Voice Audio Voices API](https://apis.io/collections/speechify/open-speechify-voices-api/)
 
-### Speechify Streaming TTS API
+#### Security (2)
 
-Streams synthesized audio as a chunked HTTP response from POST /v1/audio/stream for sub-300ms time-to-first-byte playback, with Accept values of audio/mpeg, audio/ogg, audio/aac, or audio/pcm (WAV is not available for streaming).
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/stream](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/stream)
-- **Base URL:** `https://api.sws.speechify.com/v1`
+- [Speechify Authentication](https://apis.io/security/speechify/speechify-authentication/)
+- [Speechify Domain Security](https://apis.io/security/speechify/speechify-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Streaming
-- Text to Speech
-- Low Latency
+Published plans, tiers and prices.
 
-#### Properties
+- [Speechify Plans Pricing](https://apis.io/plans/speechify/speechify-plans-pricing/)
 
-- [Documentation](https://docs.sws.speechify.com/docs/features/streaming)
-- [API Reference](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/audio/stream)
-- [OpenAPI](openapi/speechify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/speechify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/speechify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Speechify Voices API
+Published request limits.
 
-Lists the available voices via GET /v1/voices, including 1,000+ pre-set Speechify voices and any personal cloned voices, each with id, gender, locale, and tags for selection by voice_id.
+- [Speechify Rate Limits](https://apis.io/rate-limits/speechify/speechify-rate-limits/)
 
-- **Human URL:** [https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices)
-- **Base URL:** `https://api.sws.speechify.com/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Voices
-- Catalog
+- [Speechify Finops](https://apis.io/finops/speechify/speechify-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.sws.speechify.com/tts/overview/welcome)
-- [API Reference](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices/delete)
-- [OpenAPI](openapi/speechify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/speechify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/speechify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Speechify Voice Cloning API
-
-Creates an instant personal voice clone from a 10-30 second audio sample via multipart POST /v1/voices with explicit consent (full name and email), and removes cloned voices via DELETE /v1/voices/{id}.
-
-- **Human URL:** [https://docs.sws.speechify.com/tts/guides/voice-cloning](https://docs.sws.speechify.com/tts/guides/voice-cloning)
-- **Base URL:** `https://api.sws.speechify.com/v1`
-
-#### Tags
-
-- Voice Cloning
-- Custom Voices
-
-#### Properties
-
-- [Documentation](https://docs.sws.speechify.com/v1/docs/features/voice-cloning)
-- [API Reference](https://docs.sws.speechify.com/v1/api-reference/api-reference/tts/voices/delete)
-- [OpenAPI](openapi/speechify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/speechify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/speechify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/SpeechifyInc)
-- [LinkedIn](https://www.linkedin.com/company/speechify)
 - [Website](https://speechify.com)
 - [Documentation](https://docs.sws.speechify.com)
-- [Plans](plans/speechify-plans-pricing.yml)
-- [Rate Limits](rate-limits/speechify-rate-limits.yml)
-- [Fin Ops](finops/speechify-finops.yml)
+- [Blog](https://speechify.com/blog)
+- [GitHub](https://github.com/SpeechifyInc)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.5** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 51.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.5** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/speechify/](https://apis.io/providers/speechify/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Speechify: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/speechify/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
